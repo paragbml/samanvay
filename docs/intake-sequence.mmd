@@ -1,0 +1,23 @@
+sequenceDiagram
+    actor Officer
+    participant UI as Intake UI
+    participant API as FastAPI
+    participant DB as SQLite
+    participant FS as Private storage
+    participant W as Worker
+    Officer->>UI: Enter complaint and evidence
+    UI->>API: POST /api/cases + cookie + CSRF + idempotency key
+    API->>API: Validate scope, fields, dates and file signatures
+    API->>DB: Check request key and fingerprint
+    alt Existing identical request
+        DB-->>API: Existing case
+        API-->>UI: Existing authorized case
+    else New request
+        API->>DB: Stage case, original, owner, history and jobs
+        API->>FS: Store bytes using generated private keys
+        API->>DB: Add attachment metadata and commit
+        API-->>UI: Case identifier and saved details
+        W->>DB: Claim persisted jobs
+        W->>FS: Read bytes and verify hashes
+        W->>DB: Record result and refresh coordination
+    end

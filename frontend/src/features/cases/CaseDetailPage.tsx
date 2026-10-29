@@ -1,3 +1,4 @@
+import { SampleAttachments } from "./SampleAttachments";
 import { useState } from "react";
 import type { FormEvent } from "react";
 import { api } from "../../api";
@@ -199,6 +200,8 @@ export function LiveDetail({
                   ) : (
                     <p className="muted">No files available in your view.</p>
                   )}
+                  <hr />
+                  <SampleAttachments />
                   <hr />
                   <h2>Shared institution work</h2>
                   <p>

@@ -11,3 +11,5 @@ coverage/
 .local-data/
 
 .demo-contexts/
+
+.venv-linux/

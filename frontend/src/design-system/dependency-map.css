@@ -1,0 +1,29 @@
+.samanvay-app .dependency-banner {display:flex;align-items:center;gap:20px;background:#12325b;color:white;padding:22px 24px;border-radius:12px;margin-bottom:18px}
+.samanvay-app .dependency-banner small {color:#f4c56d;letter-spacing:.13em;font-size:.65rem;margin-bottom:6px}
+.samanvay-app .dependency-banner p {margin:6px 0 0;font-size:.8rem;color:#d1deee}
+.samanvay-app .dependency-panel label {margin:0;font-size:.7rem}
+.samanvay-app .map-notice {background:var(--amber-50);color:var(--amber-800);border:1px solid #e7d9b3;border-radius:6px;padding:10px 12px;font-size:.75rem}
+.samanvay-app .map-legend {color:var(--amber-800)}
+.samanvay-app .dependency-scroll {overflow:auto;border:1px solid var(--border);border-radius:10px;background:var(--surface)}
+.samanvay-app .dependency-canvas {position:relative;width:940px;margin:auto;background-image:radial-gradient(var(--border) 1px,transparent 1px);background-size:20px 20px}
+.samanvay-app .dependency-canvas svg {position:absolute;inset:0}
+.samanvay-app .map-node {position:absolute;width:240px;height:140px;display:flex;flex-direction:column;gap:4px;text-align:center;background:var(--surface);box-shadow:0 3px 12px #20365c12;white-space:normal}
+.samanvay-app .map-node strong {font-size:.8rem}
+.samanvay-app .map-node>span,.samanvay-app .map-node small {font-size:.65rem}
+.samanvay-app .map-node-id {color:var(--text-muted);letter-spacing:.05em}
+.samanvay-app .map-node-hint {color:var(--action)}
+.samanvay-app .map-node[aria-pressed=true] {border:2px solid var(--action);background:var(--selection)}
+.samanvay-app .map-edge {cursor:pointer;outline:none}
+.samanvay-app .map-edge path {fill:none;stroke:#567b91;stroke-width:2}
+.samanvay-app .map-edge.review path {stroke:#ac8028;stroke-dasharray:5 4}
+.samanvay-app .map-edge path.edge-hit {stroke:transparent;stroke-width:20;stroke-dasharray:none}
+.samanvay-app .map-edge text {font-size:9px;fill:var(--text-muted)}
+.samanvay-app .map-edge:focus path:not(.edge-hit),.samanvay-app .map-edge:hover path:not(.edge-hit) {stroke:var(--action);stroke-width:4}
+.samanvay-app .map-inspector {margin-top:14px;padding:14px 18px;background:var(--canvas);border-radius:8px;font-size:.8rem}
+.samanvay-app .map-inspector p {margin:5px 0}
+@media(prefers-reduced-motion:no-preference){.samanvay-app .map-node {transition:border-color .15s,background .15s}}
+.samanvay-app .map-toolbar {display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;margin:14px 0;font-size:.8rem}
+.samanvay-app .map-toolbar button[aria-pressed=true] {background:var(--selection);border-color:var(--action);color:var(--action)}
+.samanvay-app .map-node {height:150px}
+.samanvay-app .dependency-banner {padding:16px 20px}
+.samanvay-app .dependency-scroll {max-height:600px}

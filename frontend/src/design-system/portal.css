@@ -1,0 +1,235 @@
+/* Scoped theme: retains the original components and accessibility preferences. */
+html:not([data-high-contrast="true"]) .samanvay-app {
+ --ink-950:#182b50; --ink-800:#334462; --ink-600:#63718a; --ink-200:#dde3ee; --ink-100:#edf0f8; --ink-50:#f5f7fc;
+ --text:var(--ink-950); --text-muted:var(--ink-600); --border:var(--ink-200); --canvas:#f5f7fc; --action:#5143b5; --action-hover:#3c3090; --selection:#eeebff; --focus:#6554ca; --blue-50:#eeebff; --blue-700:#5143b5;
+ --brand-accent:#dd7b32; --control-border:#a9b5ca; --focus-surface:#20365c; --focus-text:#fff; --focus-muted:#ced9ed; --panel-radius:14px; --control-radius:8px;
+}
+.samanvay-app .gov-utility-bar {background:#192b4c}
+.samanvay-app .gov-bar-content {padding:7px 32px}
+.samanvay-app .portal-masthead {display:flex;align-items:center;gap:32px;padding:25px max(32px,calc((100vw - 1536px)/2));background:var(--surface);border-bottom:3px solid transparent;border-image:linear-gradient(90deg,#ed963f,#ed963f 25%,#e8eaf1 48%,#e8eaf1 52%,#299471 75%) 1}
+.samanvay-app .portal-masthead .brand {flex-shrink:0}
+.samanvay-app .portal-masthead .brand-mark {width:50px;height:50px;color:var(--action)}
+.samanvay-app .portal-masthead .brand-wordmark {font-size:1.75rem}
+.samanvay-app .portal-masthead .brand small {color:var(--text-muted)}
+.samanvay-app .portal-identity {border-left:1px solid var(--border);padding-left:30px}
+.samanvay-app .portal-identity>span {display:block;color:var(--text-muted);font-size:.8rem;margin-bottom:4px}
+.samanvay-app .portal-identity strong {font-size:1rem}
+.samanvay-app .portal-identity small {font-size:.72rem;margin-top:3px}
+.samanvay-app .portal-edition {margin-left:auto;text-align:right;flex-shrink:0}
+.samanvay-app .portal-edition>span {color:var(--action);font-weight:800;letter-spacing:.12em;font-size:.82rem}
+.samanvay-app .portal-edition small {margin-top:4px;font-size:.65rem}
+.samanvay-app .app-sidebar {position:static;width:auto;padding:0 24px;overflow:visible;border:0;background:#20365c}
+.samanvay-app .portal-mobile-nav {display:none}
+.samanvay-app .navigation-area {display:flex;justify-content:space-between;gap:12px;margin:0 auto;max-width:1536px}
+.samanvay-app .navigation-area nav {display:flex;gap:2px;flex-wrap:wrap}
+.samanvay-app .navigation-area nav a {color:#e6ecf7;border-radius:0;min-height:56px;gap:8px;padding:13px 14px;font-size:.8rem;border-bottom:3px solid transparent}
+.samanvay-app .navigation-area nav a:hover {background:#304970;color:#fff}
+.samanvay-app .navigation-area nav a[aria-current="page"] {background:#304970;border-bottom-color:#ffb663;color:#fff}
+.samanvay-app .nav-utilities {border:0;padding:0;margin:0}
+.samanvay-app .app-workspace {margin-left:0}
+.samanvay-app .demo-strip {padding:7px 32px;background:#eef0f8;color:var(--text-muted);font-size:.6875rem}
+.samanvay-app .app-topbar {padding:12px 32px;min-height:70px}
+.samanvay-app .workspace-search {background:var(--canvas);border:1px solid var(--border);border-radius:9px;padding-left:12px;max-width:410px}
+.samanvay-app .account-avatar {width:38px;height:38px;background:var(--selection);color:var(--action)}
+.samanvay-app main {padding:30px 32px 0}
+.samanvay-app .page-heading {margin-bottom:24px}
+.samanvay-app .page-heading h1 {font-size:1.8rem}
+.samanvay-app .primary:hover {background:var(--action-hover,var(--action))}
+.samanvay-app :is(input,select,textarea) {border-color:var(--control-border)}
+.samanvay-app .panel {box-shadow:0 3px 14px #182b5004}
+.samanvay-app thead {background:var(--canvas)}
+.samanvay-app .stat-card {background:var(--surface);border:1px solid var(--border);border-top:3px solid #8c80d1;border-radius:12px}
+.samanvay-app .workspace-viewbar {border-color:var(--border)}
+.samanvay-app .login-layout {max-width:1400px;min-height:calc(100vh - 180px);padding:56px 48px 24px;column-gap:70px;row-gap:24px;grid-template-columns:minmax(0,1.2fr) minmax(0,.9fr)}
+.samanvay-app .login-story {position:relative;background:radial-gradient(ellipse at 10% 0%,#f9eee5 0,transparent 50%),linear-gradient(140deg,#f1edff,#e9effb);border:1px solid #e4e0f3;border-radius:24px;padding:40px;overflow:hidden}
+.samanvay-app .portal-eyebrow {display:flex;align-items:center;gap:8px;color:var(--action);font-size:.65rem;font-weight:800;letter-spacing:.11em;margin-bottom:24px}
+.samanvay-app .portal-eyebrow>span {width:7px;height:7px;border-radius:50%;background:#20876a}
+.samanvay-app .login-story>h2 {font-size:clamp(2rem,3.2vw,3rem)}
+.samanvay-app .login-story>p {max-width:44ch;line-height:1.8}
+.samanvay-app .login-connection-example {margin-bottom:20px}
+.samanvay-app .example-cases>div {box-shadow:0 5px 20px #34426808}
+.samanvay-app .example-branches {border-color:#a7abd3}
+.samanvay-app .example-branches::after {background:#a7abd3}
+.samanvay-app .login-panel {border:1px solid var(--border);box-shadow:0 12px 48px #26385d08;padding:36px}
+.samanvay-app .login-panel .portal-eyebrow {margin:16px 0 8px}
+.samanvay-app .login-panel h1 {font-size:1.5rem}
+.samanvay-app .login-access-icon {display:inline-flex;padding:12px;color:var(--action);background:var(--selection);border-radius:14px}
+.samanvay-app .login-form input {min-height:48px;background:var(--canvas)}
+.samanvay-app .login-form>button {min-height:48px}
+.samanvay-app .login-disclaimer {margin:0}
+html[data-high-contrast="true"] .samanvay-app :is(.portal-masthead,.login-story,.demo-strip,.gov-utility-bar,.app-sidebar) {background:#000;color:#fff;border-color:#ffd700}
+html[data-high-contrast="true"] .samanvay-app .navigation-area nav a[aria-current="page"] {background:#333300;border-color:#ffd700}
+@media(max-width:1180px) {
+ .samanvay-app .navigation-area {flex-wrap:wrap;gap:0}
+ .samanvay-app .navigation-area nav a {min-height:48px;padding:10px 12px}
+ .samanvay-app .portal-edition {display:none}
+ .samanvay-app .login-layout {gap:30px;padding:32px}
+ .samanvay-app .login-story {padding:28px}
+}
+@media(max-width:760px) {
+ .samanvay-app .portal-masthead {gap:16px;padding:20px;align-items:flex-start;flex-wrap:wrap}
+ .samanvay-app .portal-identity {padding:0;border:0}
+ .samanvay-app .portal-identity small {display:none}
+ .samanvay-app .gov-bar-content {padding:8px 16px}
+ .samanvay-app .app-sidebar {padding:0 16px}
+ .samanvay-app .portal-mobile-nav {display:flex;align-items:center;justify-content:space-between;color:#e6ecf7;font-size:.8rem;padding:8px 0}
+ .samanvay-app .menu-toggle {display:inline-flex;background:#304970;color:#fff;border-color:#66799a}
+ .samanvay-app .navigation-area {display:none;padding-bottom:12px}
+ .samanvay-app .navigation-area.is-open {display:block}
+ .samanvay-app .navigation-area nav {display:grid;grid-template-columns:1fr 1fr}
+ .samanvay-app .app-topbar {padding:14px 20px;flex-wrap:wrap}
+ .samanvay-app .workspace-search {max-width:none;flex-basis:100%}
+ .samanvay-app .account-menu {width:100%}
+ .samanvay-app .account-menu .text-button {margin-left:auto}
+ .samanvay-app .demo-strip {padding:8px 20px}
+ .samanvay-app main {padding:24px 20px 0}
+ .samanvay-app .login-layout {grid-template-columns:1fr;padding:24px 20px}
+ .samanvay-app .login-story {padding:28px 24px}
+ .samanvay-app .login-story>p {margin-bottom:0}
+ .samanvay-app .login-panel {padding:28px 24px}
+ .samanvay-app .portal-eyebrow {line-height:1.7}
+}
+@media print {.samanvay-app :is(.portal-masthead,.gov-utility-bar,.app-sidebar) {display:none}}
+
+.samanvay-app .gov-utility-bar .gov-skip-link {color:#fff}
+.samanvay-app .menu-toggle:hover {background:#405b85;color:#fff}
+/* Keep utility controls legible despite the workspace's generic button rules. */
+.samanvay-app .gov-utility-bar .gov-btn {background:transparent;color:#eef2ff;border-color:transparent;min-height:32px;padding:5px 8px;font-size:11px}
+.samanvay-app .gov-utility-bar .gov-btn:hover {background:#405575;color:#fff}
+.samanvay-app .gov-utility-bar .gov-btn.active {background:#405575;border-color:#9baecc;color:#fff}
+.samanvay-app .gov-utility-bar .gov-skip-link:hover {background:#405575;color:#fff}
+
+/* Compact masthead and restored sidebar. Content determines height, not spacers. */
+.samanvay-app .portal-masthead {
+  justify-content: space-between;
+  padding: 12px 24px;
+  gap: 20px;
+}
+.samanvay-app .council-identity {display:flex; align-items:center; gap:14px; min-width:0}
+.samanvay-app .council-identity img {width:64px; height:64px; object-fit:contain; flex-shrink:0}
+.samanvay-app .council-identity span {display:block; font-size:.82rem; margin-bottom:2px}
+.samanvay-app .council-identity strong {display:block; font-size:.95rem}
+.samanvay-app .council-identity small {font-size:.72rem; margin-top:3px}
+.samanvay-app .portal-masthead .brand {margin-left:auto}
+.samanvay-app .portal-masthead .brand-mark {color:#20365c; width:58px; height:58px}
+.samanvay-app .brand-hindi {display:block; font-size:.8rem; font-weight:600; margin-bottom:3px; letter-spacing:0}
+.samanvay-app .portal-masthead .brand-wordmark {font-size:1.45rem}
+.samanvay-app .portal-body {display:grid; grid-template-columns:210px minmax(0,1fr); align-items:start}
+.samanvay-app .app-sidebar {position:sticky; top:0; align-self:stretch; padding:18px 12px; background:#20365c}
+.samanvay-app .navigation-area {display:block; margin:0; position:sticky; top:18px}
+.samanvay-app .navigation-area nav {display:grid; gap:4px}
+.samanvay-app .navigation-area nav a {min-height:42px; padding:10px 12px; border:0; border-left:3px solid transparent; border-radius:6px; gap:10px}
+.samanvay-app .navigation-area nav a[aria-current="page"] {border-left-color:#ffb663; background:#304970}
+.samanvay-app .nav-utilities {margin-top:24px; padding-top:16px; border-top:1px solid #496080}
+.samanvay-app .app-workspace {min-width:0}
+.samanvay-app .app-topbar {min-height:58px; padding:7px 24px; gap:12px}
+.samanvay-app main {padding:20px 24px 0}
+.samanvay-app .page-heading {margin-bottom:16px; gap:12px}
+.samanvay-app .page-heading h1 {font-size:1.55rem}
+.samanvay-app .subtitle {margin-top:4px}
+.samanvay-app .workspace-viewbar {margin-bottom:16px; padding-bottom:10px}
+.samanvay-app .page-footer {margin-top:24px; padding-block:12px}
+.samanvay-app .clock-notice {margin:0; padding:4px 24px; font-size:.7rem; background:var(--selection)}
+.samanvay-app .login-layout {min-height:0; padding:28px 40px 16px; column-gap:40px; row-gap:16px}
+.samanvay-app .login-story {padding:28px}
+.samanvay-app .login-story>h2 {font-size:clamp(1.8rem,2.8vw,2.5rem)}
+.samanvay-app .login-story>p {margin:14px 0 18px}
+.samanvay-app .login-connection-example {margin:20px 0 16px}
+.samanvay-app .login-panel {padding:26px}
+.samanvay-app .portal-eyebrow {margin-bottom:16px}
+html[data-high-contrast="true"] .samanvay-app .brand-mark {color:#ffd700; --brand-saffron:#ffd700; --brand-green:#fff}
+@media(max-width:1000px) {
+  .samanvay-app .portal-body {grid-template-columns:180px minmax(0,1fr)}
+  .samanvay-app .app-topbar {flex-wrap:wrap}
+  .samanvay-app .council-identity strong {font-size:.82rem}
+  .samanvay-app .portal-masthead .brand small {display:none}
+}
+@media(max-width:760px) {
+  .samanvay-app .portal-masthead {padding:10px 16px; flex-wrap:nowrap; gap:12px}
+  .samanvay-app .council-identity {gap:8px}
+  .samanvay-app .council-identity img {width:44px;height:44px}
+  .samanvay-app .council-identity strong {font-size:.65rem}
+  .samanvay-app .council-identity span {font-size:.65rem}
+  .samanvay-app .council-identity small {display:none}
+  .samanvay-app .portal-masthead .brand-mark {width:38px;height:38px}
+  .samanvay-app .portal-masthead .brand-wordmark {font-size:1rem}
+  .samanvay-app .brand-lockup {gap:5px}
+  .samanvay-app .brand-hindi {font-size:.65rem}
+  .samanvay-app .portal-body {display:block}
+  .samanvay-app .app-sidebar {position:static;padding:0 16px}
+  .samanvay-app .navigation-area {display:none;position:static}
+  .samanvay-app .navigation-area.is-open {display:block}
+  .samanvay-app .navigation-area nav {grid-template-columns:1fr 1fr}
+  .samanvay-app .nav-utilities {margin-top:8px;padding-top:8px}
+  .samanvay-app main {padding:16px 16px 0}
+  .samanvay-app .app-topbar {padding:8px 16px}
+  .samanvay-app .login-layout {padding:20px 16px}
+}
+@media print {.samanvay-app .portal-body {display:block}}
+.samanvay-app .focus-case {padding:18px; margin:12px}
+.samanvay-app .focus-case-heading {margin-bottom:12px}
+.samanvay-app .focus-case-origin {margin-bottom:12px}
+.samanvay-app .focus-responsibility {margin:14px 0}
+.samanvay-app .focus-next {padding-top:12px}
+.samanvay-app .focus-footer {margin-top:14px}
+
+/* Fill the available screen even when a route has only a few records. */
+.samanvay-app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
+  width: 100%;
+}
+.samanvay-app > .gov-utility-bar,
+.samanvay-app > .portal-masthead {flex-shrink: 0}
+.samanvay-app .gov-bar-content {max-width: none}
+.samanvay-app .portal-body {
+  flex: 1;
+  width: 100%;
+  align-items: stretch;
+}
+.samanvay-app .app-workspace {
+  display: flex;
+  flex-direction: column;
+}
+.samanvay-app .app-workspace > main {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  width: 100%;
+  max-width: none;
+  margin-inline: 0;
+}
+.samanvay-app .app-workspace > main > .page-footer {
+  margin-top: auto;
+  padding-top: 20px;
+}
+.samanvay-app .login-layout {
+  flex: 1;
+  width: 100%;
+  max-width: none;
+  padding-inline: clamp(24px, 5vw, 96px);
+}
+@media (max-width: 760px) {
+  .samanvay-app .portal-body {display: flex; flex-direction: column}
+  .samanvay-app .app-workspace {flex: 1}
+  .samanvay-app .login-layout {padding-inline: 16px}
+}
+.samanvay-app .sample-attachments {margin-block:14px}
+.samanvay-app .sample-file-grid {display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px}
+.samanvay-app .sample-file-grid article {border:1px solid var(--border);border-radius:8px;padding:12px;font-size:.75rem;min-width:0}
+.samanvay-app .sample-thumbnail {display:block;width:100%;padding:0;overflow:hidden;background:var(--canvas);margin-bottom:10px}
+.samanvay-app .sample-thumbnail img {display:block;width:100%;height:160px;object-fit:contain}
+.samanvay-app .sample-preview img {display:block;width:100%;height:auto;margin-block:12px}
+.samanvay-app .gov-utility-bar a.gov-org {color:#f7f9f8;text-decoration:none}
+.samanvay-app .gov-utility-bar a.gov-org:hover {text-decoration:underline}
+.samanvay-app .national-emblem-link {display:flex;align-items:center;padding-right:14px;border-right:1px solid var(--border);flex-shrink:0}
+.samanvay-app .council-identity img.national-emblem {width:42px;height:64px;object-fit:contain}
+html[data-high-contrast="true"] .samanvay-app .national-emblem-link {background:white}
+@media(max-width:760px) {
+ .samanvay-app .national-emblem-link {padding-right:8px}
+ .samanvay-app .council-identity img.national-emblem {width:28px;height:44px}
+}
+/* The official source is a white emblem intended for a dark masthead. */
+.samanvay-app .council-identity img.national-emblem {filter:brightness(0)}
+.samanvay-app .gov-utility-bar .gov-identity {display:flex}

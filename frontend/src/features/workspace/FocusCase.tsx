@@ -2,6 +2,7 @@ import type { CaseRecord } from "../../api";
 import { Icon } from "../../shared/ui";
 import { dateLabel, person, words } from "../../presentation";
 import { isOverdue } from "./queue-model";
+import { useCurrentLanguage, t } from "../../shared/i18n";
 
 export function FocusCase({
   record,
@@ -11,12 +12,13 @@ export function FocusCase({
   asOf: string;
 }) {
   const late = isOverdue(record, asOf);
+  const lang = useCurrentLanguage();
   return (
     <section className="focus-case" aria-labelledby="focus-case-title">
       <div className="focus-case-heading">
-        <h2 id="focus-case-title">Next in your queue</h2>
+        <h2 id="focus-case-title">{t("Next in your queue", lang)}</h2>
         <span className="focus-order">
-          <Icon name="clock" size={15} /> Earliest due first
+          <Icon name="clock" size={15} /> {t("Earliest due first", lang)}
         </span>
       </div>
       <h3>
@@ -35,20 +37,20 @@ export function FocusCase({
               .join("")}
           </span>
           <div>
-            <span>Case owner</span>
+            <span>{t("Case owner", lang)}</span>
             <strong>{person(record.owner.name)}</strong>
             <small>{words(record.owner.bureau)}</small>
           </div>
         </div>
         <div className="focus-deadline">
-          <span>{late ? "Overdue" : "Due date"}</span>
+          <span>{late ? t("Overdue", lang) : t("Due date", lang)}</span>
           <strong>{dateLabel(record.expected_disposal_date)}</strong>
         </div>
       </div>
       <div className="focus-next">
         <Icon name="arrow" size={18} />
         <div>
-          <span>Next step</span>
+          <span>{t("Next step", lang)}</span>
           <p>{record.next_action}</p>
         </div>
       </div>
@@ -59,9 +61,10 @@ export function FocusCase({
             : words(record.lifecycle)}
         </span>
         <a className="button" href={"#/cases/" + record.id}>
-          Open complaint <Icon name="arrow" size={16} />
+          {t("Open complaint", lang)} <Icon name="arrow" size={16} />
         </a>
       </div>
     </section>
   );
 }
+

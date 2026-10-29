@@ -1,0 +1,5 @@
+{
+  "python.defaultInterpreterPath": "${workspaceFolder}/backend/.venv-linux/bin/python",
+  "files.watcherExclude": {"**/backend/.venv-linux/**": true, "**/.local-data/**": true},
+  "search.exclude": {"**/backend/.venv-linux": true, "**/.local-data": true}
+}

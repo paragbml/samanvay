@@ -36,7 +36,7 @@ class CaseInput(StrictInput):
     @classmethod
     def demo_token(cls, value):
         if not value.startswith("DEMO-"):
-            raise ValueError("Use a fictional DEMO- complainant token.")
+            raise ValueError("Use a valid DEMO- complainant token.")
         return value
 
 

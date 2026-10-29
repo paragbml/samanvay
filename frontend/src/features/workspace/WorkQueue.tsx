@@ -6,6 +6,7 @@ import { dateLabel, mayCreate } from "../../presentation";
 import { LiveTable } from "../cases/CaseList";
 import { FocusCase } from "./FocusCase";
 import { InstitutionConnections } from "./InstitutionConnections";
+import { useCurrentLanguage, t } from "../../shared/i18n";
 
 type Queue = "open" | "overdue" | "mine";
 type Workspace = {
@@ -21,6 +22,7 @@ export function WorkQueue({ session }: { session: Session }) {
   const [queue, setQueue] = useState<Queue>("open");
   const [view, setView] = useState<"cases" | "institutions">("cases");
   const [selectedGroupId, setSelectedGroupId] = useState("");
+  const lang = useCurrentLanguage();
   const resource = useResource<Workspace>("/api/workspace?queue=" + queue);
   const data = resource.data;
   function openSharedPlans() {
@@ -32,16 +34,17 @@ export function WorkQueue({ session }: { session: Session }) {
   return (
     <>
       <PageHeading
-        title="Your workspace"
+        title={t("Your workspace", lang)}
         action={
           mayCreate(session) ? (
             <a className="button primary" href="#/cases/new">
-              New complaint <Icon name="arrow" size={16} />
+              {t("New complaint", lang)} <Icon name="arrow" size={16} />
             </a>
           ) : undefined
         }
       >
-        Every complaint has an owner. Every team has a next step.
+
+        {null}
       </PageHeading>
       <div className="workspace-viewbar">
         <div className="workspace-view-switch" aria-label="Workspace view">
@@ -50,14 +53,14 @@ export function WorkQueue({ session }: { session: Session }) {
             onClick={() => setView("cases")}
           >
             <Icon name="cases" size={18} />
-            Case queue
+            {t("Case queue", lang)}
           </button>
           <button
             aria-pressed={view === "institutions"}
             onClick={() => setView("institutions")}
           >
             <Icon name="coordination" size={18} />
-            Shared plans
+            {t("Shared plans", lang)}
           </button>
         </div>
         <span className="workspace-date">
@@ -97,13 +100,13 @@ export function WorkQueue({ session }: { session: Session }) {
                     aria-pressed={queue === key}
                     onClick={() => setQueue(key)}
                   >
-                    {label}
+                    {t(label, lang)}
                     {data && <span className="count">{data.counts[key]}</span>}
                   </button>
                 ))}
               </div>
               <button className="text-button" onClick={resource.reload}>
-                Refresh
+                {t("Refresh", lang)}
               </button>
             </div>
             <ResourceState {...resource} />

@@ -1,0 +1,35 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Samanvay: frontend",
+      "type": "shell",
+      "command": "npm run dev",
+      "options": {"cwd": "${workspaceFolder}/frontend"},
+      "problemMatcher": [],
+      "presentation": {"reveal": "always", "panel": "dedicated"}
+    },
+    {
+      "label": "Samanvay: API",
+      "type": "shell",
+      "command": ".venv-linux/bin/python -m uvicorn app.main:app --host 127.0.0.1 --port 8000 --no-access-log",
+      "options": {"cwd": "${workspaceFolder}/backend", "env": {"SAMANVAY_ENV": "demo"}},
+      "problemMatcher": [],
+      "presentation": {"reveal": "always", "panel": "dedicated"}
+    },
+    {
+      "label": "Samanvay: worker",
+      "type": "shell",
+      "command": ".venv-linux/bin/python -m app.worker",
+      "options": {"cwd": "${workspaceFolder}/backend", "env": {"SAMANVAY_ENV": "demo"}},
+      "problemMatcher": [],
+      "presentation": {"reveal": "always", "panel": "dedicated"}
+    },
+    {
+      "label": "Samanvay: run all",
+      "dependsOn": ["Samanvay: frontend", "Samanvay: API", "Samanvay: worker"],
+      "dependsOrder": "parallel",
+      "problemMatcher": []
+    }
+  ]
+}

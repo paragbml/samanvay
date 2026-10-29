@@ -15,14 +15,17 @@ export function BrandMark({
       fill="none"
       aria-hidden="true"
     >
+      <circle cx="50" cy="50" r="46" stroke="currentColor" strokeWidth="2" />
+      <g transform="translate(12 12) scale(.76)">
       <path
         d="M74 17H43C26.4 17 13 30.4 13 47V53H46V41H26.5C29 33.9 35.4 29 43 29H74a6 6 0 0 0 0-12Z"
-        fill="currentColor"
+        fill="var(--brand-saffron, #c46b23)"
       />
       <path
         d="M26 83H57C73.6 83 87 69.6 87 53V47H54V59H73.5C71 66.1 64.6 71 57 71H26a6 6 0 0 0 0 12Z"
-        fill="currentColor"
+        fill="var(--brand-green, #18745b)"
       />
+      </g>
     </svg>
   );
 }
@@ -32,11 +35,12 @@ export function Brand({ tagline = true }: { tagline?: boolean }) {
     <span className="brand-lockup">
       <BrandMark />
       <span className="brand-wordmark">
+        <span className="brand-hindi" lang="hi">समन्वय</span>
         samanvay
         <span className="brand-period" aria-hidden="true">
           .
         </span>
-        {tagline && <small>Clarity. Accountability. Together.</small>}
+        {tagline && <small>Coordination · Accountability</small>}
       </span>
     </span>
   );

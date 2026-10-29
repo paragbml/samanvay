@@ -11,6 +11,9 @@ import "@fontsource/manrope/latin-500.css";
 import "@fontsource/manrope/latin-600.css";
 import "@fontsource/manrope/latin-700.css";
 import "./design-system/desk.css";
+import "./design-system/gov-bar.css";
+import "./design-system/portal.css";
+import { GovAccessibilityBar } from "./shared/GovAccessibilityBar";
 
 export default function LiveApp() {
   const auth = useSession();
@@ -36,7 +39,10 @@ export default function LiveApp() {
           <p role="status">Opening Samanvay…</p>
         </div>
       ) : !auth.session ? (
-        <Login error={auth.error} onLogin={auth.login} onRetry={auth.retry} />
+        <>
+          <GovAccessibilityBar />
+          <Login error={auth.error} onLogin={auth.login} onRetry={auth.retry} />
+        </>
       ) : (
         <WorkspaceShell
           session={auth.session}

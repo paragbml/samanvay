@@ -1,6 +1,8 @@
 import './styles.css';
+import './design-system/gov-bar.css';
 import { useEffect, useState } from 'react';
 import { Icon } from './components';
+import { GovAccessibilityBar } from './shared/GovAccessibilityBar';
 import Overview from './screens/Overview';
 import { CaseDetail, CaseList, Intake } from './screens/Cases';
 import { InstitutionList, InstitutionProfile } from './screens/Institutions';
@@ -27,8 +29,9 @@ export default function PreviewApp() {
   else if(section==='preview-states') screen=<PreviewStates/>;
   else screen=<><h1 id="page-title" tabIndex={-1}>Page not found</h1><p>This route is not in the UI preview. <a href="#/overview">Return to Overview</a>.</p></>;
   return <>
+    <GovAccessibilityBar />
     <a className="skip-link" href="#main-content" onClick={e=>{e.preventDefault();document.getElementById('main-content')?.focus();}}>Skip to main content</a>
     <aside className="sidebar"><a className="brand" href="#/overview" aria-label="Samanvay overview"><span className="brand-symbol"><Icon name="coordination" size={25}/></span><span>Samanvay<small>Institution coordination</small></span></a><div className="sidebar-caption">WORKSPACE</div><nav aria-label="Main navigation">{nav.map(label=><a key={label} href={`#/${label.toLowerCase()}`} aria-current={section===label.toLowerCase()?'page':undefined}><Icon name={label.toLowerCase()}/><span>{label}</span>{label==='Coordination'&&<span className="nav-count">1</span>}</a>)}</nav><div className="sidebar-bottom"><span className="prototype-label">STUDENT PROTOTYPE</span><p>Connected work.<br/>Clear responsibility.</p><a href="#/preview-states"><Icon name="info" size={16}/>Preview states</a></div></aside>
-    <div className="workspace"><div className="prototype-banner"><Icon name="info" size={16}/><strong>Synthetic UI reference</strong><span>Authored fixtures · no live integrations · no changes are saved</span><a href="/">Open database workspace</a></div><header className="topbar"><p>Institution complaint coordination <span className="topbar-divider">/</span> <strong>{section==='preview-states'?'Preview states':nav.find(label=>label.toLowerCase()===section)??'Preview'}</strong></p><div className="persona"><span className="avatar">DC</span><div><strong>Demo coordinator</strong><span>Illustrative scope · no sign-in</span></div></div></header><main id="main-content" tabIndex={-1} key={route}>{screen}<footer className="page-footer"><span>Samanvay · Stage 1 UI reference</span><span>All institutions, people and allegations are fictional.</span></footer></main></div>
+    <div className="workspace"><div className="prototype-banner"><Icon name="info" size={16}/><strong>Synthetic UI reference</strong><span>Authored fixtures · no live integrations · no changes are saved</span><a href="/">Open database workspace</a></div><header className="topbar"><p>Institution complaint coordination <span className="topbar-divider">/</span> <strong>{section==='preview-states'?'Preview states':nav.find(label=>label.toLowerCase()===section)??'Preview'}</strong></p><div className="persona"><span className="avatar">DC</span><div><strong>Demo coordinator</strong><span>Illustrative scope · no sign-in</span></div></div></header><main id="main-content" tabIndex={-1} key={route}>{screen}<footer className="page-footer"><span>Samanvay · Stage 1 UI reference</span><span>Demonstration environment · sample grievances and institutions for coordination review.</span></footer></main></div>
   </>;
 }

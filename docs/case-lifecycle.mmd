@@ -1,0 +1,16 @@
+stateDiagram-v2
+    [*] --> RECEIVED: Intake; initial owner recorded
+    RECEIVED --> ASSIGNED: Eligible same-bureau reassignment
+    ASSIGNED --> ASSIGNED: Further eligible reassignment
+    UNDER_REVIEW --> ASSIGNED: Eligible same-bureau reassignment
+    AWAITING_INFORMATION --> ASSIGNED: Eligible same-bureau reassignment
+    RECEIVED --> UNDER_REVIEW: REVIEW
+    ASSIGNED --> UNDER_REVIEW: REVIEW
+    UNDER_REVIEW --> AWAITING_INFORMATION: REQUEST_INFORMATION
+    AWAITING_INFORMATION --> AWAITING_INFORMATION: INFORMATION recorded
+    AWAITING_INFORMATION --> UNDER_REVIEW: REVIEW after latest request answered
+    RECEIVED --> DISPOSED: Authorized DISPOSE
+    ASSIGNED --> DISPOSED: Authorized DISPOSE
+    UNDER_REVIEW --> DISPOSED: Authorized DISPOSE
+    AWAITING_INFORMATION --> DISPOSED: Authorized DISPOSE
+    DISPOSED --> UNDER_REVIEW: Authorized REOPEN with next action

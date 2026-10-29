@@ -3,7 +3,7 @@ import type { FormEvent } from "react";
 import { api } from "../api";
 import type { Session } from "../api";
 import { Icon } from "../shared/ui";
-import { Brand } from "../shared/Brand";
+import { PortalMasthead } from "../shared/PortalMasthead";
 
 export function Login({
   error,
@@ -37,11 +37,11 @@ export function Login({
     }
   }
   return (
-    <div className="login-layout">
+    <>
+    <PortalMasthead />
+    <div className="login-layout" id="main-content" tabIndex={-1}>
       <section className="login-story">
-        <a className="brand" href="#/overview">
-          <Brand />
-        </a>
+        <span className="portal-eyebrow"><span /> CONNECTED GOVERNANCE · CLEAR ACCOUNTABILITY</span>
         <h2>
           Separate complaints.
           <br />
@@ -88,6 +88,8 @@ export function Login({
         </div>
       </section>
       <section className="login-panel panel padded">
+        <span className="login-access-icon"><Icon name="cases" size={24} /></span>
+        <span className="portal-eyebrow">OFFICER ACCESS</span>
         <h1 id="page-title" tabIndex={-1}>
           Sign in to your workspace
         </h1>
@@ -122,10 +124,9 @@ export function Login({
           </button>
         </form>
         <details className="demo-credentials">
-          <summary>Try a fictional demo account</summary>
+          <summary>Try a demo account</summary>
           <p>
-            Choose a role, then sign in. Your role controls the records and
-            actions available.
+            Choose a role for the SIH walkthrough. Explore saved complaints, shared plans and reports with role-specific actions.
           </p>
           <div className="demo-account-grid">
             {[
@@ -149,16 +150,16 @@ export function Login({
             ))}
           </div>
           <p className="small">
-            Administrator access does not include complaint access.
+            Demo accounts have explicit read access to the SIH showcase cases. Role-specific actions remain restricted.
           </p>
         </details>
       </section>
       <p className="login-disclaimer">
-        <strong>Student prototype · fictional data</strong>
+        <strong>Student prototype · Demo data</strong>
         <br />
-        No official AICTE connection. No real complaints or personal
-        information.
+        Built by SIH Team : Unfazed | Problem Statement ID : 26264
       </p>
     </div>
+    </>
   );
 }

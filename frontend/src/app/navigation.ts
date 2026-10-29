@@ -3,6 +3,7 @@ export const navigation = [
   ["cases", "Complaints"],
   ["institutions", "Institutions"],
   ["coordination", "Coordination"],
+  ["dependencies", "Dependency map"],
   ["reports", "Reports"],
 ] as const;
 export const utilities = [

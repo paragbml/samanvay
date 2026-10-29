@@ -1,3 +1,4 @@
+import { DependencyMap } from "../features/workspace/DependencyMap";
 import type { Session } from "../api";
 import { parseRoute } from "./navigation";
 import { WorkQueue } from "../features/workspace/WorkQueue";
@@ -61,6 +62,8 @@ export function RouteView({
           <IdentityTools session={session} institutionId={id} />
         </>
       );
+    case "dependencies":
+      return <DependencyMap />;
     case "reports":
       return <LiveReports />;
     case "notifications":

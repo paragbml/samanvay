@@ -152,7 +152,7 @@ def create_app(settings=None):
         membership = intake_membership(actor)
         institution = db.get(Institution, data.institution_id)
         if not institution or not institution.synthetic:
-            raise HTTPException(422, "Select a fictional institution by its exact identifier.")
+            raise HTTPException(422, "Select a registered institution by its exact identifier.")
         if membership.region_id and membership.region_id != institution.region_id:
             raise HTTPException(403, "Institution is outside this regional intake scope.")
         prepared = await prepare_files(files)

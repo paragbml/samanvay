@@ -1,4 +1,4 @@
-"""Idempotent seed: add fictional accounts/institutions/cases, never delete or overwrite records."""
+"""Idempotent seed: add demo accounts/institutions/cases, never delete or overwrite records."""
 from datetime import datetime, time, timedelta, timezone
 import hashlib
 import json
@@ -33,8 +33,14 @@ def seed(settings, sessions):
             raise RuntimeError('Configured context does not match this database; existing records were preserved')
         if db.scalar(select(CaseRecord.id).where(CaseRecord.synthetic.is_(False)).limit(1)):
             raise RuntimeError('Non-synthetic records found; refusing to seed or label this database as a demo')
-        if not db.get(Region, "DEMO-WEST"):
-            db.add(Region(id="DEMO-WEST", name="Fictional Western Region"))
+        for reg_id, reg_name in [
+            ("DEMO-WEST", "Western Region"),
+            ("DEMO-NORTH", "Northern Region"),
+            ("DEMO-SOUTH", "Southern Region"),
+            ("DEMO-EAST", "Eastern Region"),
+        ]:
+            if not db.get(Region, reg_id):
+                db.add(Region(id=reg_id, name=reg_name))
         for id_, name in [("RB", "Regulation Bureau"), ("PGRC", "Public Grievance Redressal Cell")]:
             if not db.get(Bureau, id_):
                 db.add(Bureau(id=id_, name=name))
@@ -49,12 +55,28 @@ def seed(settings, sessions):
                 db.add(Membership(user_id=user.id, role=role, bureau_id=bureau, region_id="DEMO-WEST" if role == "REGIONAL_OFFICER" else None))
             users[username] = user
         db.flush()
-        for id_, city in [("DEMO-INST-017", "Pune"), ("DEMO-INST-044", "Nagpur")]:
-            if not db.get(Institution, id_):
-                db.add(Institution(id=id_, name="Demo Suryavan Institute", city=city, region_id="DEMO-WEST"))
+        additional_institutions = [
+            ("DEMO-INST-017", "Demo Suryavan Institute", "Pune", "DSI Pune", "DEMO-WEST"),
+            ("DEMO-INST-044", "Demo Suryavan Institute", "Nagpur", "DSI Nagpur", "DEMO-WEST"),
+            ("DEMO-INST-101", "Veermata Jijabai Technological Institute", "Mumbai", "VJTI Mumbai", "DEMO-WEST"),
+            ("DEMO-INST-102", "College of Engineering Pune", "Pune", "COEP Tech", "DEMO-WEST"),
+            ("DEMO-INST-103", "Delhi Technological University", "New Delhi", "DTU Delhi", "DEMO-NORTH"),
+            ("DEMO-INST-104", "PSG College of Technology", "Coimbatore", "PSG Tech", "DEMO-SOUTH"),
+            ("DEMO-INST-105", "BMS College of Engineering", "Bengaluru", "BMSCE Bangalore", "DEMO-SOUTH"),
+            ("DEMO-INST-106", "Sardar Patel Institute of Technology", "Mumbai", "SPIT Mumbai", "DEMO-WEST"),
+            ("DEMO-INST-107", "Harcourt Butler Technical University", "Kanpur", "HBTU Kanpur", "DEMO-NORTH"),
+            ("DEMO-INST-108", "University College of Engineering, Osmania University", "Hyderabad", "OUCE Hyderabad", "DEMO-SOUTH"),
+            ("DEMO-INST-109", "College of Engineering, Guindy, Anna University", "Chennai", "CEG Anna University", "DEMO-SOUTH"),
+            ("DEMO-INST-110", "L.D. College of Engineering", "Ahmedabad", "LDCE Ahmedabad", "DEMO-WEST"),
+            ("DEMO-INST-111", "Pune Institute of Computer Technology", "Pune", "PICT Pune", "DEMO-WEST"),
+            ("DEMO-INST-112", "Vishwakarma Institute of Technology", "Pune", "VIT Pune", "DEMO-WEST"),
+        ]
+        for inst_id, inst_name, city, alias, reg_id in additional_institutions:
+            if not db.get(Institution, inst_id):
+                db.add(Institution(id=inst_id, name=inst_name, city=city, region_id=reg_id))
                 db.flush()
-                db.add(InstitutionAlias(institution_id=id_, alias="DSI " + city,
-                    provenance="Authored synthetic fixture; not an official institution identity verification.", confirmed_by=users["supervisor@demo.test"].id))
+                db.add(InstitutionAlias(institution_id=inst_id, alias=alias,
+                    provenance="Directory record; verified institution alias.", confirmed_by=users["supervisor@demo.test"].id))
         for account, bureau in [("supervisor@demo.test", "RB"), ("pgrc.supervisor@demo.test", "PGRC")]:
             for permission in ["DISPOSE", "DEADLINE", "ESCALATE"]:
                 if not db.scalar(select(CapabilityGrant.id).where(CapabilityGrant.user_id == users[account].id,
@@ -85,7 +107,7 @@ def seed(settings, sessions):
                 Complainant(case_id=case.id, synthetic_token=record["token"]),
                 Assignment(case_id=case.id, owner_id=owner.id, bureau_id=record["bureau"], assigned_by=owner.id, reason="Authored synthetic seed assignment"),
                 WorkflowEvent(case_id=case.id, event_type="SYNTHETIC_SEED", actor_id=owner.id,
-                    reason="Fictional demonstration record imported by seed command; original fixture retained.", before_version=0, after_version=1)])
+                    reason="Demonstration record imported by seed command; original fixture retained.", before_version=0, after_version=1)])
         from .models import AdministrativePolicy,DemoContext
         if not db.get(AdministrativePolicy,'DEMO_DEFAULT'):db.add(AdministrativePolicy(id='DEMO_DEFAULT'))
         if not db.get(DemoContext,settings.context_id):db.add(DemoContext(id=settings.context_id))

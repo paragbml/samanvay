@@ -1,0 +1,41 @@
+flowchart TB
+    User["Officer / supervisor / coordinator / management / admin"]
+    subgraph UI["Frontend: React + TypeScript, port 5173"]
+        Screens["Login and workspace screens"]
+        Client["api.ts: same-origin HTTP requests"]
+        Proxy["Vite /api proxy"]
+        Screens --> Client --> Proxy
+    end
+    subgraph API["Backend: FastAPI, port 8000"]
+        Auth["Session authentication; origin and CSRF checks for mutations"]
+        Scope["Role, capability and data-access checks"]
+        Intake["Intake and evidence validation"]
+        Actions["Case actions and ownership transfers"]
+        Identity["Institution identity review"]
+        Matching["Lexical and rule-based matching; human pair review"]
+        Coordination["Shared institution coordination plans"]
+        Reads["Scoped workspace, case views and reports"]
+        Auth --> Scope
+        Scope --> Intake & Actions & Identity & Matching & Coordination & Reads
+    end
+    DB[("SQLite: cases, originals, assignments, decisions, history, sessions, jobs")]
+    Files[("Private evidence files")]
+    subgraph Worker["Background Python worker"]
+        Integrity["Evidence jobs: verify SHA-256"]
+        Domain["Domain-change jobs: refresh coordination"]
+        Scheduler["Expire transfers; policy escalation; create notifications"]
+        Delivery["Deliver persisted in-app notifications"]
+        Scheduler --> Delivery
+    end
+    User --> Screens
+    Proxy --> Auth
+    Intake --> DB
+    Intake --> Files
+    Actions & Identity & Matching & Coordination --> DB
+    DB --> Reads
+    Reads --> Client
+    DB --> Integrity & Domain & Scheduler & Delivery
+    Files --> Integrity
+    Integrity & Domain & Scheduler & Delivery --> DB
+    DB --> Notices["Authorized notification API"]
+    Notices --> Screens

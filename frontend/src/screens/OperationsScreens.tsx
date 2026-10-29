@@ -588,7 +588,7 @@ export function LiveSettings({ session }: { session: Session }) {
         </p>
         <Disclosure title="Prototype limits & illustrative preview">
           <p>
-            All records are fictional. No AICTE, email, semantic AI or LLM
+            All records are demonstration data. No AICTE, email, semantic AI or LLM
             service is connected. Local rule-based checks suggest comparisons
             for human review. Real malware scanning and production deployment
             are not established.

@@ -1,3 +1,4 @@
+import { SampleAttachments } from "./SampleAttachments";
 import { useState } from "react";
 import type { FormEvent } from "react";
 import { api } from "../../api";
@@ -66,10 +67,10 @@ export function LiveIntake({ session }: { session: Session }) {
   return (
     <>
       <PageHeading eyebrow="New case" title="New complaint">
-        Record a fictional complaint and decide what should happen next.
+        Record a demo complaint and decide what should happen next.
       </PageHeading>
       <Notice>
-        Use fictional data only. This case will be owned by:{" "}
+        Demo intake mode. Enter complaint details. This case will be owned by:{" "}
         <strong>{session.user.display_name}</strong>. Choose the institution and
         city carefully. Connected complaints can be reviewed after saving.
       </Notice>
@@ -176,7 +177,7 @@ export function LiveIntake({ session }: { session: Session }) {
               maxLength={20000}
               required
             />
-            <label htmlFor="new-token">Fictional complainant reference *</label>
+            <label htmlFor="new-token">Demo complainant reference token (DEMO-*) *</label>
             <input
               id="new-token"
               name="complainant"
@@ -226,6 +227,7 @@ export function LiveIntake({ session }: { session: Session }) {
                 </p>
               </div>
               <div>
+                <SampleAttachments />
                 <label htmlFor="new-evidence">
                   Supporting evidence (optional)
                 </label>

@@ -21,12 +21,12 @@ export function LiveInstitutions({ id }: { id?: string }) {
       <ResourceState {...institutions} />
       {id && institutions.data && !chosen ? (
         <EmptyState title="Institution not found">
-          Select a fictional institution from the directory.
+          Select an institution from the directory.
         </EmptyState>
       ) : chosen ? (
         <>
           <section className="panel padded">
-            <Badge>Fictional institution · {chosen.id}</Badge>
+            <Badge>AICTE Demo Institution · {chosen.id}</Badge>
             <dl className="evidence-fields">
               <div>
                 <dt>City / region</dt>
@@ -77,7 +77,7 @@ export function LiveInstitutions({ id }: { id?: string }) {
         <div className="institution-grid">
           {institutions.data?.map((i) => (
             <article className="panel padded" key={i.id}>
-              <Badge>Fictional institution · {i.city}</Badge>
+              <Badge>AICTE Demo Institution · {i.city}</Badge>
               <h2 className="spacing-top">
                 {i.name}, {i.city}
               </h2>

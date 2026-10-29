@@ -5,7 +5,9 @@ import { Icon } from "../shared/ui";
 import { useResource } from "../shared/useResource";
 import { dateLabel, person, words } from "../presentation";
 import { navigation, utilities } from "./navigation";
-import { Brand } from "../shared/Brand";
+import { PortalMasthead } from "../shared/PortalMasthead";
+import { GovAccessibilityBar } from "../shared/GovAccessibilityBar";
+import { useCurrentLanguage, t } from "../shared/i18n";
 
 export function WorkspaceShell({
   session,
@@ -24,6 +26,7 @@ export function WorkspaceShell({
 }) {
   const [menu, setMenu] = useState(false);
   const [search, setSearch] = useState("");
+  const lang = useCurrentLanguage();
   const clock = useResource<{ as_of: string; clock_offset_seconds: number }>(
     "/api/settings",
   );
@@ -37,8 +40,8 @@ export function WorkspaceShell({
         key={key}
         aria-current={section === key ? "page" : undefined}
       >
-        <Icon name={key === "transfers" ? "arrow" : key} />
-        <span>{name}</span>
+        <Icon name={key === "transfers" ? "arrow" : key === "dependencies" ? "coordination" : key} />
+        <span>{t(name, lang)}</span>
       </a>
     ));
   return (
@@ -53,18 +56,15 @@ export function WorkspaceShell({
       >
         Skip to main content
       </a>
-      <aside className="app-sidebar">
-        <div className="brand-row">
-          <a className="brand" href="#/overview">
-            <Brand />
-          </a>
-          <button
-            className="menu-toggle"
-            aria-expanded={menu}
-            aria-controls="workspace-navigation"
-            onClick={() => setMenu((value) => !value)}
-          >
-            {menu ? "Close menu" : "Menu"}
+      <GovAccessibilityBar />
+      <PortalMasthead />
+      <div className="portal-body">
+      <aside className="app-sidebar" aria-label="Workspace navigation">
+        <div className="portal-mobile-nav">
+          <span>Officer workspace</span>
+          <button className="menu-toggle" aria-expanded={menu}
+            aria-controls="workspace-navigation" onClick={() => setMenu(value => !value)}>
+            <Icon name="cases" size={16} /> {menu ? "Close menu" : "Menu"}
           </button>
         </div>
         <div
@@ -83,32 +83,12 @@ export function WorkspaceShell({
           <nav className="nav-utilities" aria-label="Tools and help">
             {links(utilities)}
           </nav>
-          <div className="sidebar-note">
-            <span className="sidebar-note-symbol">
-              <Icon name="coordination" size={20} />
-            </span>
-            <strong>Working better, together.</strong>
-            <p>
-              One owner for each case.
-              <br />A shared plan across teams.
-            </p>
-            <a href="#/settings">
-              About this prototype <Icon name="arrow" size={14} />
-            </a>
-          </div>
         </div>
       </aside>
       <div className="app-workspace">
-        <div className="demo-strip">
-          <strong>Student prototype</strong>
-          <span>Fictional data · no AICTE connection</span>
-          {clock.data && clock.data.clock_offset_seconds !== 0 && (
-            <span className="demo-time">
-              Demo date {dateLabel(clock.data.as_of)} · clock +
-              {clock.data.clock_offset_seconds / 3600}h
-            </span>
-          )}
-        </div>
+        {clock.data && clock.data.clock_offset_seconds !== 0 && (
+          <p className="clock-notice">Demo date {dateLabel(clock.data.as_of)} · clock +{clock.data.clock_offset_seconds / 3600}h</p>
+        )}
         <header className="app-topbar">
           {section !== "cases" ? (
             <form
@@ -130,7 +110,7 @@ export function WorkspaceShell({
               <input
                 id="workspace-search"
                 type="search"
-                placeholder="Find a complaint or institution"
+                placeholder={t("Find a complaint or institution", lang)}
                 value={search}
                 maxLength={200}
                 onChange={(event) => setSearch(event.target.value)}
@@ -161,7 +141,7 @@ export function WorkspaceShell({
               </small>
             </div>
             <button className="text-button" onClick={onLogout}>
-              Sign out
+              {t("Sign out", lang)}
             </button>
           </div>
         </header>
@@ -172,6 +152,7 @@ export function WorkspaceShell({
             <a href="#/settings">Help & demo limits</a>
           </footer>
         </main>
+      </div>
       </div>
     </>
   );
